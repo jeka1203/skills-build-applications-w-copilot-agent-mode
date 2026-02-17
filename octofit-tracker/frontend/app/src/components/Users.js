@@ -4,7 +4,7 @@ function Users() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/users/')
+    fetch(`https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/users/`)
       .then(response => response.json())
       .then(data => setUsers(data));
   }, []);
