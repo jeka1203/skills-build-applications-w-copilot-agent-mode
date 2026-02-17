@@ -25,6 +25,14 @@ router.register(r'workouts', WorkoutViewSet)
 router.register(r'activities', ActivityViewSet)
 router.register(r'leaderboard', LeaderboardViewSet)
 
+
+import os
+
+# Codespace Name für dynamische URL
+codespace_name = os.environ.get('CODESPACE_NAME', 'localhost')
+base_url = f"https://{codespace_name}-8000.app.github.dev" if codespace_name != 'localhost' else "http://localhost:8000"
+
+# API Endpoints
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', api_root, name='api-root'),
