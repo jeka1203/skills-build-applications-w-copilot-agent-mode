@@ -4,9 +4,13 @@ function Workouts() {
   const [workouts, setWorkouts] = useState([]);
 
   useEffect(() => {
-    fetch(`https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/workouts/`)
-      .then(response => response.json())
-      .then(data => setWorkouts(data));
+      fetch('/api/workouts')
+        .then((res) => res.json())
+        .then((data) => {
+          const items = Array.isArray(data) ? data : data.results || [];
+          setWorkouts(items);
+          console.log('Fetched workouts:', data);
+        });
   }, []);
 
   return (

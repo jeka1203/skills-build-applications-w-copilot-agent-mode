@@ -4,9 +4,13 @@ function Activities() {
   const [activities, setActivities] = useState([]);
 
   useEffect(() => {
-    fetch(`https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/activities/`)
-      .then(response => response.json())
-      .then(data => setActivities(data));
+    fetch('/api/activities')
+      .then((res) => res.json())
+      .then((data) => {
+        const items = Array.isArray(data) ? data : data.results || [];
+        setActivities(items);
+        console.log('Fetched activities:', data);
+      });
   }, []);
 
   return (

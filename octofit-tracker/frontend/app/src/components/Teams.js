@@ -4,9 +4,13 @@ function Teams() {
   const [teams, setTeams] = useState([]);
 
   useEffect(() => {
-    fetch(`https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/teams/`)
-      .then(response => response.json())
-      .then(data => setTeams(data));
+    fetch('/api/teams')
+      .then((res) => res.json())
+      .then((data) => {
+        const items = Array.isArray(data) ? data : data.results || [];
+        setTeams(items);
+        console.log('Fetched teams:', data);
+      });
   }, []);
 
   return (

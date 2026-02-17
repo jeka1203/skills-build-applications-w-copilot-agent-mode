@@ -4,9 +4,13 @@ function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState([]);
 
   useEffect(() => {
-    fetch(`https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/leaderboard/`)
-      .then(response => response.json())
-      .then(data => setLeaderboard(data));
+      fetch('/api/leaderboard')
+        .then((res) => res.json())
+        .then((data) => {
+          const items = Array.isArray(data) ? data : data.results || [];
+          setLeaderboard(items);
+          console.log('Fetched leaderboard:', data);
+        });
   }, []);
 
   return (

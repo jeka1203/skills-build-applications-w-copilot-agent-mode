@@ -4,9 +4,13 @@ function Users() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch(`https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/users/`)
-      .then(response => response.json())
-      .then(data => setUsers(data));
+      fetch('/api/users')
+        .then((res) => res.json())
+        .then((data) => {
+          const items = Array.isArray(data) ? data : data.results || [];
+          setUsers(items);
+          console.log('Fetched users:', data);
+        });
   }, []);
 
   return (
