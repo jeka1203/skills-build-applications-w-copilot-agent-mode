@@ -4,7 +4,9 @@ function Teams() {
   const [teams, setTeams] = useState([]);
 
   useEffect(() => {
-    fetch('/api/teams')
+    const endpoint = '/api/teams';
+    console.log('Fetching from endpoint:', endpoint);
+    fetch(endpoint)
       .then((res) => res.json())
       .then((data) => {
         const items = Array.isArray(data) ? data : data.results || [];

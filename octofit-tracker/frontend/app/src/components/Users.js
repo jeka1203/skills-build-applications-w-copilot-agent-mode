@@ -4,7 +4,9 @@ function Users() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-      fetch('/api/users')
+      const endpoint = '/api/users';
+      console.log('Fetching from endpoint:', endpoint);
+      fetch(endpoint)
         .then((res) => res.json())
         .then((data) => {
           const items = Array.isArray(data) ? data : data.results || [];

@@ -4,7 +4,9 @@ function Workouts() {
   const [workouts, setWorkouts] = useState([]);
 
   useEffect(() => {
-      fetch('/api/workouts')
+      const endpoint = '/api/workouts';
+      console.log('Fetching from endpoint:', endpoint);
+      fetch(endpoint)
         .then((res) => res.json())
         .then((data) => {
           const items = Array.isArray(data) ? data : data.results || [];

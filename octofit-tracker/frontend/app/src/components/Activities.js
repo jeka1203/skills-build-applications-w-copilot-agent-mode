@@ -4,7 +4,9 @@ function Activities() {
   const [activities, setActivities] = useState([]);
 
   useEffect(() => {
-    fetch('/api/activities')
+    const endpoint = '/api/activities';
+    console.log('Fetching from endpoint:', endpoint);
+    fetch(endpoint)
       .then((res) => res.json())
       .then((data) => {
         const items = Array.isArray(data) ? data : data.results || [];

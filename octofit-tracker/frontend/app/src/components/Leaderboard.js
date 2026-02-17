@@ -4,7 +4,9 @@ function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState([]);
 
   useEffect(() => {
-      fetch('/api/leaderboard')
+      const endpoint = '/api/leaderboard';
+      console.log('Fetching from endpoint:', endpoint);
+      fetch(endpoint)
         .then((res) => res.json())
         .then((data) => {
           const items = Array.isArray(data) ? data : data.results || [];
